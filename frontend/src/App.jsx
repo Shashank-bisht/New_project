@@ -1,16 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import Home from './pages/Home';
+import { AppContext } from './context/contextApi';
+import Navbar from './components/Navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './pages/Signup';
+import Login from './pages/Login';
+// import Weather from './pages/Weather';
+import { About } from './pages/About';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-     <h1 className="text-3xl font-bold underline">Hello</h1>
-    </>
-  )
+    <AppContext>
+         <Router>
+      <Navbar />
+          <Routes>
+            <Route exact path='/' element={<Home />} />
+            <Route exact path='/sign-up' element={<Signup />} />
+            <Route exact path='/sign-in' element={<Login />} />
+            {/* <Route exact path='/weather' element={<Weather />} /> */}
+            <Route exact path='/about' element={<About />} />
+          </Routes>
+      </Router>
+    </AppContext>
+  );
 }
 
-export default App
+export default App;
